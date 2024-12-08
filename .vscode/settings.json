@@ -1,5 +1,8 @@
 {
 	"files.associations": {
-		"push_swap.h": "c"
+		"push_swap.h": "c",
+		"test_push_swap.h": "c",
+		"assert.h": "c",
+		"unistd.h": "c"
 	}
 }

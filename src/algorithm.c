@@ -6,37 +6,13 @@
 /*   By: antoinemura <antoinemura@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 14:52:56 by antoinemura       #+#    #+#             */
-/*   Updated: 2024/12/07 18:56:42 by antoinemura      ###   ########.fr       */
+/*   Updated: 2024/12/08 00:45:09 by antoinemura      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	find_max_index(t_node **b)
-{
-	int		max;
-	int		max_index;
-	int		i;
-	t_node	*current;
-
-	current = *b;
-	max = current->value;
-	max_index = 0;
-	i = 0;
-	while(current)
-	{
-		if (current->value > max)
-		{
-			max = current->value;
-			max_index = i;
-		}
-		current = current->next;
-		i++;
-	}
-	return (max_index);
-}
-
-int	find_closest_smaller_index_in_b(int value, t_node **b)
+int	find_closest_smaller_index(int value, t_list *list)
 {
 	int		closest_smaller;
 	int		closest_smaller_index;
@@ -44,7 +20,7 @@ int	find_closest_smaller_index_in_b(int value, t_node **b)
 	t_node	*current;
 	int		found;
 
-	current = *b;
+	current = list->list;
 	i = 0;
 	found = 0;
 	closest_smaller = INT_MIN;
@@ -61,14 +37,15 @@ int	find_closest_smaller_index_in_b(int value, t_node **b)
 		i++;
 	}
 	if (found == 0)
-		return (find_max_index(b));
+		return (find_max_index(&(list->list)));
 	return (closest_smaller_index);
 }
 
 void	turk_algorithm(t_list **list_a, t_list **list_b)
 {
-	while((*list_a)->list)
+	while((*list_a)->list != NULL)
 		push(list_a, list_b);
-	int value = 7;
-	int closest = find_closest_smaller_index_in_b(value, &(*list_b)->list);
+	int value = 3;
+	int closest = find_closest_smaller_index(value, *list_b);
+	printf("closest index = %d\n", closest);
 }
