@@ -6,7 +6,7 @@
 /*   By: antoinemura <antoinemura@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 20:14:13 by antoinemura       #+#    #+#             */
-/*   Updated: 2024/12/07 23:04:22 by antoinemura      ###   ########.fr       */
+/*   Updated: 2024/12/08 21:43:02 by antoinemura      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,7 @@ void	test_init()
 	char	*args[] = {"./push_swap", "1", "2", "3", "4", NULL};
 
 	// Initialisation des listes
-	init_t_lists(&list_a, &list_b);
-
-	// Initialisation des nœuds
-	init_t_nodes(&list_a, &list_b, 5, args);
+	init_t_lists(&list_a, &list_b, 5, args);
 
 	// ===== LIST_A ===== //
 	assert(list_a->length == 4);

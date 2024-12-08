@@ -1,26 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_rrotate.c                                     :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: antoinemura <antoinemura@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/07 20:14:28 by antoinemura       #+#    #+#             */
-/*   Updated: 2024/12/08 21:43:22 by antoinemura      ###   ########.fr       */
+/*   Created: 2024/12/08 21:44:48 by antoinemura       #+#    #+#             */
+/*   Updated: 2024/12/08 21:56:27 by antoinemura      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "test_push_swap.h"
+#include "push_swap.h"
 
-void	test_rrotate()
+void	free_t_list(t_list *list)
 {
-	// ===== INIT ===== //
-	t_list	*list_a;
-	t_list	*list_b;
-	char	*args[] = {"./push_swap", "1", "2", "3", "4", NULL};
-	init_t_lists(&list_a, &list_b, 5, args);
-	// ================ //
+	t_node	*next;
+	t_node	*current;
 
-	rrotate(&list_a);
-	assertLinkedList(list_a->list, (int[]){2, 3, 4, 1}, 4);
+	if (!list)
+	{
+		write(1, "Error\n", 7);
+		exit(EXIT_FAILURE);
+	}
+	current = list->list;
+	while (current)
+	{
+		next = current->next;
+		free(current);
+		current = next;
+	}
+	free(list);
 }

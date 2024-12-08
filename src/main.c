@@ -6,7 +6,7 @@
 /*   By: antoinemura <antoinemura@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 13:59:15 by antoinemura       #+#    #+#             */
-/*   Updated: 2024/12/08 00:13:10 by antoinemura      ###   ########.fr       */
+/*   Updated: 2024/12/08 21:42:31 by antoinemura      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,10 @@ int main(int argc, char **argv)
 	t_list	*list_b;
 
 	// Initialisation des listes
-	init_t_lists(&list_a, &list_b);
-
-	// Initialisation des nœuds
-	init_t_nodes(&list_a, &list_b, argc, argv);
+	init_t_lists(&list_a, &list_b, argc, argv);
 
 	turk_algorithm(&list_a, &list_b);
-	print_list(list_a);
-
+	print_list(list_a, "a");
 	// Libération des ressources allouées (à implémenter)
 	// free_nodes(node_a);
 	free(list_a);

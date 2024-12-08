@@ -6,7 +6,7 @@
 /*   By: antoinemura <antoinemura@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 20:14:28 by antoinemura       #+#    #+#             */
-/*   Updated: 2024/12/08 09:59:05 by antoinemura      ###   ########.fr       */
+/*   Updated: 2024/12/08 21:43:16 by antoinemura      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ void	test_rotate()
 	t_list	*list_a;
 	t_list	*list_b;
 	char	*args[] = {"./push_swap", "1", "2", "3", "4", NULL};
-	init_t_lists(&list_a, &list_b);
-	init_t_nodes(&list_a, &list_b, 5, args);
+	init_t_lists(&list_a, &list_b, 5, args);
 	// ================ //
 
 	rotate(&list_a);

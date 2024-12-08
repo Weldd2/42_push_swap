@@ -6,7 +6,7 @@
 /*   By: antoinemura <antoinemura@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 20:04:03 by antoinemura       #+#    #+#             */
-/*   Updated: 2024/12/07 23:03:40 by antoinemura      ###   ########.fr       */
+/*   Updated: 2024/12/08 21:57:29 by antoinemura      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void init_t_nodes(t_list **list_a, t_list **list_b, int argc, char **argv)
 	(*list_b)->list = NULL;
 }
 
-void init_t_lists(t_list **list_a, t_list **list_b)
+void init_t_lists(t_list **list_a, t_list **list_b, int argc, char **argv)
 {
 	*list_a = malloc(sizeof(t_list));
 	if (*list_a == NULL)
@@ -47,4 +47,5 @@ void init_t_lists(t_list **list_a, t_list **list_b)
 	(*list_b)->min = INT_MAX;
 	(*list_b)->max = INT_MIN;
 	(*list_b)->length = 0;
+	init_t_nodes(list_a, list_b, argc, argv);
 }

@@ -16,6 +16,11 @@ int main(void)
 
 	test_closest_smaller();
 	printf("\033[0;32m✔ Test CLOSEST SMALLER OK.\033[0m\n");
+	// test_calculate_smallest_move_cost();
+	// printf("\033[0;32m✔ Test SMALLEST MOVE COST OK.\033[0m\n");
+
+	test_is_sorted();
+	printf("\033[0;32m✔ Test IS SORTED OK.\033[0m\n");
 
 	printf("Tous les tests ont réussi.\n");
 	// Libération des ressources allouées
