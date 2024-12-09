@@ -6,7 +6,7 @@
 /*   By: antoinemura <antoinemura@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 14:52:56 by antoinemura       #+#    #+#             */
-/*   Updated: 2024/12/09 19:26:58 by antoinemura      ###   ########.fr       */
+/*   Updated: 2024/12/09 19:38:17 by antoinemura      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,9 +106,9 @@ void	sort(t_list *list_a, t_list *list_b)
 
 	move = calculate_smallest_move_cost(*list_a, *list_b, find_closest_smaller_index);
 	while(list_a->list->value != move.elem_value)
-		rrotate(list_a);
+		rotate(list_a);
 	while(list_b->list->value != move.target_value)
-		rrotate(list_b);
+		rotate(list_b);
 	push(list_a, list_b);
 }
 
@@ -118,9 +118,9 @@ void	sort_2(t_list *list_a, t_list *list_b)
 
 	move = calculate_smallest_move_cost(*list_b, *list_a, find_closest_bigger_index);
 	while(list_b->list->value != move.elem_value)
-		rrotate(list_b);
+		rotate(list_b);
 	while(list_a->list->value != move.target_value)
-		rrotate(list_a);
+		rotate(list_a);
 	push(list_b, list_a);
 }
 
@@ -156,7 +156,6 @@ void	turk_algorithm(t_list *list_a, t_list *list_b)
 {
 	push(list_a, list_b);
 	push(list_a, list_b);
-	
 	while(list_a->length > 3)
 		sort(list_a, list_b);
 	sort_3(list_a);
