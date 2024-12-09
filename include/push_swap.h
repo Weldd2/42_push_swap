@@ -14,12 +14,6 @@ typedef struct s_node
 	// struct s_node	*prev;
 }	t_node;
 
-typedef struct s_move
-{
-	int	a_index;
-	int	b_index;
-}	t_move;
-
 typedef struct s_list
 {
 	t_node	*list;
@@ -27,6 +21,12 @@ typedef struct s_list
 	int		max;
 	int		min;
 }	t_list;
+
+typedef struct s_move
+{
+	int	a_index;
+	int	b_index;
+}	t_move;
 
 // ===== INIT ===== //
 void init_t_lists(t_list **list_a, t_list **list_b, int argc, char **argv);
@@ -38,7 +38,7 @@ void	turk_algorithm(t_list **list_a, t_list **list_b);
 t_node	*ft_list_to_node(t_list **list, int argc, char **argv);
 int		find_closest_smaller_index(int value, t_list *list);
 t_move	calculate_smallest_move_cost(t_list *a, t_list *b);
-void	sort(t_move move, t_list **list_a, t_list **list_b);
+void	sort(t_list **list_a, t_list **list_b);
 void	sort_3(t_list **list);
 
 int		ft_atoi(const char *nptr);
@@ -58,5 +58,6 @@ int	max(int a, int b);
 void	print_list(t_list *list, char *name);
 int		get_elem_by_index(t_list *list, int index);
 int		is_sorted(t_list *list);
+int		is_reverse_sorted(t_list *list);
 
 #endif

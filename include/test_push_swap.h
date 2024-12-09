@@ -6,7 +6,7 @@
 /*   By: antoinemura <antoinemura@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 20:15:26 by antoinemura       #+#    #+#             */
-/*   Updated: 2024/12/08 21:39:30 by antoinemura      ###   ########.fr       */
+/*   Updated: 2024/12/09 02:46:54 by antoinemura      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,7 @@ void	test_rrotate();
 void	test_closest_smaller();
 void	test_calculate_smallest_move_cost();
 void	test_is_sorted();
+void	test_is_reverse_sorted();
+void	test_sort();
 
 #endif

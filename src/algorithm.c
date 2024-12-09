@@ -6,7 +6,7 @@
 /*   By: antoinemura <antoinemura@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 14:52:56 by antoinemura       #+#    #+#             */
-/*   Updated: 2024/12/08 21:23:04 by antoinemura      ###   ########.fr       */
+/*   Updated: 2024/12/09 02:43:31 by antoinemura      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ t_move	calculate_smallest_move_cost(t_list *a, t_list *b)
 {
 	t_node	*current_a;
 	int		cost;
+	int		target_index;
 	int		min_cost;
 	int		i;
 	t_move	move;
@@ -54,13 +55,12 @@ t_move	calculate_smallest_move_cost(t_list *a, t_list *b)
 	i = 0;
 	while (current_a)
 	{
-		printf("elem %d\n", get_elem_by_index(a, i));
-		cost = find_closest_smaller_index(current_a->value, b);
-		printf("target : %d\n", get_elem_by_index(b, cost));
+		target_index = find_closest_smaller_index(current_a->value, b);
+		cost = target_index + i;
 		if (cost < min_cost)
 		{
 			move.a_index = i;
-			move.b_index = cost;
+			move.b_index = target_index;
 			min_cost = cost;
 		}
 		current_a = current_a->next;
@@ -69,20 +69,30 @@ t_move	calculate_smallest_move_cost(t_list *a, t_list *b)
 	return (move);
 }
 
-void	sort(t_move move, t_list **list_a, t_list **list_b)
+void	sort(t_list **list_a, t_list **list_b)
 {
-	while (move.a_index != 0)
+	int		i;
+	t_move	move;
+
+	i = 0;
+	move = calculate_smallest_move_cost(*list_a, *list_b);
+	while(i < move.a_index)
 	{
-		rotate(list_a);
-		move.a_index--;
+		rrotate(list_a);
+		i++;
 	}
-	while (move.b_index != 0)
+	i = 0;
+	while(i < move.b_index)
 	{
-		rotate(list_b);
-		move.b_index--;
+		rrotate(list_b);
+		i++;
 	}
 	push(list_a, list_b);
 }
+
+//b -> 1 2 4 5
+//a -> 3 6 7 8
+// tant que b n'a pas rotate du la valeur de l'index de b
 
 void	sort_3(t_list **list)
 {
@@ -111,6 +121,7 @@ void	sort_3(t_list **list)
 	else if (first < second && second > third && first > third)
 		rrotate(list);
 }
+// NORMAL
 // SORTED 2 - 3 - 1
 // SORTED 3 - 1 - 2
 // SORTED 1 - 2 - 3
@@ -118,11 +129,17 @@ void	sort_3(t_list **list)
 // 1 - 3 - 2
 // 2 - 1 - 3
 
+// REVERSE
+// SORTED 3 - 2 - 1
+// SORTED 2 - 1 - 3
+// SORTED 1 - 3 - 2
+// 1 - 2 - 3
+// 3 - 1 - 2
+// 2 - 3 - 1
+
 void	turk_algorithm(t_list **list_a, t_list **list_b)
 {
-	while((*list_a)->list != NULL)
+	while((*list_a)->length > 3)
 		push(list_a, list_b);
-	int value = 3;
-	int closest = find_closest_smaller_index(value, *list_b);
-	printf("closest index = %d\n", closest);
+	sort(list_a, list_b);
 }
