@@ -6,7 +6,7 @@
 /*   By: antoinemura <antoinemura@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 02:44:59 by antoinemura       #+#    #+#             */
-/*   Updated: 2024/12/09 02:46:37 by antoinemura      ###   ########.fr       */
+/*   Updated: 2024/12/09 17:59:55 by antoinemura      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void	test_is_sorted()
 {
 	// ===== INIT ===== //
-	t_list	*list_a;
-	t_list	*list_b;
+	t_list	list_a;
+	t_list	list_b;
 	char	*args[] = {"./push_swap", "1", "2", "3", "4", "5", "6", "7", NULL};
 	init_t_lists(&list_a, &list_b, 8, args);
 	// ================ //
@@ -58,8 +58,8 @@ void	test_is_sorted()
 void	test_is_reverse_sorted()
 {
 	// ===== INIT ===== //
-	t_list	*list_a;
-	t_list	*list_b;
+	t_list	list_a;
+	t_list	list_b;
 	char	*args[] = {"./push_swap", "7", "6", "5", "4", "3", "2", "1", NULL};
 	init_t_lists(&list_a, &list_b, 8, args);
 	// ================ //

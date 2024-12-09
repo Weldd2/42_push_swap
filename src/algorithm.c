@@ -6,13 +6,13 @@
 /*   By: antoinemura <antoinemura@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 14:52:56 by antoinemura       #+#    #+#             */
-/*   Updated: 2024/12/09 02:43:31 by antoinemura      ###   ########.fr       */
+/*   Updated: 2024/12/09 19:26:58 by antoinemura      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	find_closest_smaller_index(int value, t_list *list)
+int	find_closest_smaller_index(int value, t_list list)
 {
 	int		closest_smaller;
 	int		closest_smaller_index;
@@ -20,7 +20,7 @@ int	find_closest_smaller_index(int value, t_list *list)
 	t_node	*current;
 	int		found;
 
-	current = list->list;
+	current = list.list;
 	i = 0;
 	found = 0;
 	closest_smaller = INT_MIN;
@@ -37,72 +37,102 @@ int	find_closest_smaller_index(int value, t_list *list)
 		i++;
 	}
 	if (found == 0)
-		return (find_max_index(&(list->list)));
+		return (find_max_index(list.list));
 	return (closest_smaller_index);
 }
 
-t_move	calculate_smallest_move_cost(t_list *a, t_list *b)
+int	find_closest_bigger_index(int value, t_list list)
 {
-	t_node	*current_a;
+	int		closest_bigger;
+	int		closest_bigger_index;
+	int		i;
+	t_node	*current;
+	int		found;
+
+	current = list.list;
+	i = 0;
+	found = 0;
+	closest_bigger = INT_MAX;
+	closest_bigger_index = 0;
+	while(current)
+	{
+		if (current->value > value && current->value < closest_bigger)
+		{
+			closest_bigger = current->value;
+			closest_bigger_index = i;
+			found = 1;
+		}
+		current = current->next;
+		i++;
+	}
+	if (found == 0)
+		return (find_min_index(list.list));
+	return (closest_bigger_index);
+}
+
+t_move	calculate_smallest_move_cost(t_list from, t_list target, int (*func)(int, t_list))
+{
+	t_node	*current;
 	int		cost;
 	int		target_index;
 	int		min_cost;
 	int		i;
 	t_move	move;
 
-	current_a = a->list;
+	current = from.list;
 	min_cost = INT_MAX;
 	i = 0;
-	while (current_a)
+	while (current)
 	{
-		target_index = find_closest_smaller_index(current_a->value, b);
+		target_index = func(current->value, target);
 		cost = target_index + i;
 		if (cost < min_cost)
 		{
-			move.a_index = i;
-			move.b_index = target_index;
+			move.elem_index = i;
+			move.elem_value = current->value;
+			move.target_index = target_index;
+			move.target_value = get_elem_by_index(target, target_index);
 			min_cost = cost;
 		}
-		current_a = current_a->next;
+		current = current->next;
 		i++;
 	}
 	return (move);
 }
 
-void	sort(t_list **list_a, t_list **list_b)
+void	sort(t_list *list_a, t_list *list_b)
 {
-	int		i;
 	t_move	move;
 
-	i = 0;
-	move = calculate_smallest_move_cost(*list_a, *list_b);
-	while(i < move.a_index)
-	{
+	move = calculate_smallest_move_cost(*list_a, *list_b, find_closest_smaller_index);
+	while(list_a->list->value != move.elem_value)
 		rrotate(list_a);
-		i++;
-	}
-	i = 0;
-	while(i < move.b_index)
-	{
+	while(list_b->list->value != move.target_value)
 		rrotate(list_b);
-		i++;
-	}
 	push(list_a, list_b);
 }
 
-//b -> 1 2 4 5
-//a -> 3 6 7 8
-// tant que b n'a pas rotate du la valeur de l'index de b
+void	sort_2(t_list *list_a, t_list *list_b)
+{
+	t_move	move;
 
-void	sort_3(t_list **list)
+	move = calculate_smallest_move_cost(*list_b, *list_a, find_closest_bigger_index);
+	while(list_b->list->value != move.elem_value)
+		rrotate(list_b);
+	while(list_a->list->value != move.target_value)
+		rrotate(list_a);
+	push(list_b, list_a);
+}
+
+void	sort_3(t_list *list)
 {
 	int	first;
 	int	second;
 	int	third;
 	
-	first = (*list)->list->value;
-	second = (*list)->list->next->value;
-	third = (*list)->list->next->next->value;
+	first = list->list->value;
+	second = list->list->next->value;
+	third = list->list->next->next->value;
 
 	if (first > second && second < third && first < third)
 		swap(list);
@@ -121,25 +151,15 @@ void	sort_3(t_list **list)
 	else if (first < second && second > third && first > third)
 		rrotate(list);
 }
-// NORMAL
-// SORTED 2 - 3 - 1
-// SORTED 3 - 1 - 2
-// SORTED 1 - 2 - 3
-// 3 - 2 - 1
-// 1 - 3 - 2
-// 2 - 1 - 3
 
-// REVERSE
-// SORTED 3 - 2 - 1
-// SORTED 2 - 1 - 3
-// SORTED 1 - 3 - 2
-// 1 - 2 - 3
-// 3 - 1 - 2
-// 2 - 3 - 1
-
-void	turk_algorithm(t_list **list_a, t_list **list_b)
+void	turk_algorithm(t_list *list_a, t_list *list_b)
 {
-	while((*list_a)->length > 3)
-		push(list_a, list_b);
-	sort(list_a, list_b);
+	push(list_a, list_b);
+	push(list_a, list_b);
+	
+	while(list_a->length > 3)
+		sort(list_a, list_b);
+	sort_3(list_a);
+	while(list_b->length > 0)
+		sort_2(list_a, list_b);
 }

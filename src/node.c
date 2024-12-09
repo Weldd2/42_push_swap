@@ -6,7 +6,7 @@
 /*   By: antoinemura <antoinemura@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 11:37:47 by antoinemura       #+#    #+#             */
-/*   Updated: 2024/12/07 23:13:19 by antoinemura      ###   ########.fr       */
+/*   Updated: 2024/12/09 17:38:33 by antoinemura      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_node	*ft_init_node(int value)
 	return (n);
 }
 
-t_node	*ft_list_to_node(t_list **list, int argc, char **argv)
+t_node	*ft_list_to_node(t_list *list, int argc, char **argv)
 {
 	int		i;
 	t_node	*current;
@@ -33,15 +33,15 @@ t_node	*ft_list_to_node(t_list **list, int argc, char **argv)
 	int		value;
 
 	i = argc - 1;
-	(*list)->length = i;
+	list->length = i;
 	prev = NULL;
 	while (i >= 1)
 	{
 		value = ft_atoi(argv[i]);
-		if (value > (*list)->max)
-			(*list)->max = value;
-		if (value < (*list)->min)
-			(*list)->min = value;
+		if (value > list->max)
+			list->max = value;
+		if (value < list->min)
+			list->min = value;
 		current = ft_init_node(value);
 		current->next = prev;
 		prev = current;
