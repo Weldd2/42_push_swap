@@ -6,7 +6,7 @@
 /*   By: antoinemura <antoinemura@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 13:59:15 by antoinemura       #+#    #+#             */
-/*   Updated: 2024/12/09 19:32:21 by antoinemura      ###   ########.fr       */
+/*   Updated: 2024/12/10 18:13:18 by antoinemura      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,3 @@ int main(int argc, char **argv)
 	// TODO : Implémenter la gestion quand params = 4
 	// TODO : implémenter un rotate et rrotate intelligent avec mediane
 }
-

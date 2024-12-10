@@ -6,7 +6,7 @@
 /*   By: antoinemura <antoinemura@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 10:00:13 by antoinemura       #+#    #+#             */
-/*   Updated: 2024/12/09 19:12:13 by antoinemura      ###   ########.fr       */
+/*   Updated: 2024/12/10 18:33:41 by antoinemura      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,15 +77,18 @@ void	test_sort()
 	push(&list_a, &list_b);
 	
 	while(list_a.length > 3)
-		sort(&list_a, &list_b);
+		sort(&list_a, &list_b, find_closest_smaller_index);
+
 	
-	assert(is_reverse_sorted(list_b) == 0);
+	assert(is_sorted(list_b, descending) == true);
 
 	sort_3(&list_a);
-	assert(is_sorted(list_a) == 0);
+	assert(is_sorted(list_a, ascending) == true);
 
 	printf("push b vers a en triant a (RETOUR)\n");
 	while(list_b.length > 0)
-		sort_2(&list_a, &list_b);
-	assert(is_sorted(list_a) == 0);
+		sort(&list_b, &list_a, find_closest_bigger_index);
+	assert(is_sorted(list_a, ascending) == true);
+	print_list(list_a, "a");
+	print_list(list_b, "b");
 }

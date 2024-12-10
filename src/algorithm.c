@@ -6,7 +6,7 @@
 /*   By: antoinemura <antoinemura@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 14:52:56 by antoinemura       #+#    #+#             */
-/*   Updated: 2024/12/09 19:38:17 by antoinemura      ###   ########.fr       */
+/*   Updated: 2024/12/10 18:31:03 by antoinemura      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ int	find_closest_bigger_index(int value, t_list list)
 	return (closest_bigger_index);
 }
 
+
 t_move	calculate_smallest_move_cost(t_list from, t_list target, int (*func)(int, t_list))
 {
 	t_node	*current;
@@ -100,28 +101,16 @@ t_move	calculate_smallest_move_cost(t_list from, t_list target, int (*func)(int,
 	return (move);
 }
 
-void	sort(t_list *list_a, t_list *list_b)
+void	sort(t_list *from, t_list *to, int (*sm_cost)(int, t_list))
 {
 	t_move	move;
 
-	move = calculate_smallest_move_cost(*list_a, *list_b, find_closest_smaller_index);
-	while(list_a->list->value != move.elem_value)
-		rotate(list_a);
-	while(list_b->list->value != move.target_value)
-		rotate(list_b);
-	push(list_a, list_b);
-}
-
-void	sort_2(t_list *list_a, t_list *list_b)
-{
-	t_move	move;
-
-	move = calculate_smallest_move_cost(*list_b, *list_a, find_closest_bigger_index);
-	while(list_b->list->value != move.elem_value)
-		rotate(list_b);
-	while(list_a->list->value != move.target_value)
-		rotate(list_a);
-	push(list_b, list_a);
+	move = calculate_smallest_move_cost(*from, *to, sm_cost);
+	while(from->list->value != move.elem_value)
+		rotate(from);
+	while(to->list->value != move.target_value)
+		rotate(to);
+	push(from, to);
 }
 
 void	sort_3(t_list *list)
@@ -157,8 +146,8 @@ void	turk_algorithm(t_list *list_a, t_list *list_b)
 	push(list_a, list_b);
 	push(list_a, list_b);
 	while(list_a->length > 3)
-		sort(list_a, list_b);
+		sort(list_a, list_b, find_closest_smaller_index);
 	sort_3(list_a);
 	while(list_b->length > 0)
-		sort_2(list_a, list_b);
+		sort(list_a, list_b, find_closest_bigger_index);
 }

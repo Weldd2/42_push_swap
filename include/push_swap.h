@@ -4,6 +4,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <unistd.h>
+# include <stdbool.h>
 # define INT_MIN -2147483648
 # define INT_MAX 2147483647
 
@@ -38,10 +39,10 @@ void	free_t_list(t_list list);
 void	turk_algorithm(t_list *list_a, t_list *list_b);
 t_node	*ft_list_to_node(t_list *list, int argc, char **argv);
 int		find_closest_smaller_index(int value, t_list list);
+int		find_closest_bigger_index(int value, t_list list);
 t_move	calculate_smallest_move_cost(t_list from, t_list target, int (*func)(int, t_list));
-void	sort(t_list *list_a, t_list *list_b);
+void	sort(t_list *list_a, t_list *list_b, int (*sm_cost)(int, t_list));
 void	sort_3(t_list *list);
-void	sort_2(t_list *list_a, t_list *list_b);
 
 int		ft_atoi(const char *nptr);
 
@@ -52,15 +53,16 @@ void	rotate(t_list *list);
 void	rrotate(t_list *list);
 // =============== //
 
-int	find_max_index(t_node *n);
-int	find_max_value(t_node *n);
-int	find_min_index(t_node *n);
-int	find_min_value(t_node *n);
-int	max(int a, int b);
+int		find_max_index(t_node *n);
+int		find_max_value(t_node *n);
+int		find_min_index(t_node *n);
+int		find_min_value(t_node *n);
+int		max(int a, int b);
 
 void	print_list(t_list list, char *name);
 int		get_elem_by_index(t_list list, int index);
-int		is_sorted(t_list list);
-int		is_reverse_sorted(t_list list);
+bool	is_sorted(t_list list, int (*direction)(int, int));
 
+int		descending(int a, int b);
+int		ascending(int a, int b);
 #endif

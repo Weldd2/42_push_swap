@@ -6,7 +6,7 @@
 /*   By: antoinemura <antoinemura@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 23:08:11 by antoinemura       #+#    #+#             */
-/*   Updated: 2024/12/09 18:16:03 by antoinemura      ###   ########.fr       */
+/*   Updated: 2024/12/10 18:28:39 by antoinemura      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	find_max_index(t_node *n)
 	int		i;
 	t_node	*current;
 
+	if (!n)
+		return (-1);
 	current = n;
 	max = current->value;
 	max_index = 0;
@@ -36,6 +38,7 @@ int	find_max_index(t_node *n)
 	return (max_index);
 }
 
+
 int	find_min_index(t_node *n)
 {
 	int		min;
@@ -43,6 +46,8 @@ int	find_min_index(t_node *n)
 	int		i;
 	t_node	*current;
 
+	if (!n)
+		return (-1);
 	current = n;
 	min = current->value;
 	min_index = 0;

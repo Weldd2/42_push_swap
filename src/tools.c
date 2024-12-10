@@ -6,7 +6,7 @@
 /*   By: antoinemura <antoinemura@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 20:06:46 by antoinemura       #+#    #+#             */
-/*   Updated: 2024/12/09 18:09:48 by antoinemura      ###   ########.fr       */
+/*   Updated: 2024/12/10 18:46:12 by antoinemura      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,48 +43,37 @@ int	get_elem_by_index(t_list list, int index)
 	return (current->value);
 }
 
-int	is_sorted(t_list list)
+int	ascending(int a, int b)
+{
+	return (a < b);
+}
+
+int	descending(int a, int b)
+{
+	return (a > b);
+}
+
+bool	is_sorted(t_list list, int (*direction)(int, int))
 {
 	t_node	*current;
 	int		prev;
-	int		count;
+	int		breaks;
 
-	count = 0;
+	if (!list.list)
+		return (true);
+	breaks = 0;
 	current = list.list;
 	prev = current->value;
-	while(current)
+	current = current->next;
+	while (current)
 	{
-		if (current->value < prev)
-			count++;
+		if (!direction(prev, current->value))
+			breaks++;
 		prev = current->value;
 		current = current->next;
 	}
-	if (list.list->value < prev)
-		count++;
-	if (count > 1)
-		return (1);
-	return (0);
+	if (!direction(prev, list.list->value))
+		breaks++;
+	return (breaks <= 1);
 }
 
-int	is_reverse_sorted(t_list list)
-{
-	t_node	*current;
-	int		prev;
-	int		count;
-
-	count = 0;
-	current = list.list;
-	prev = current->value;
-	while(current)
-	{
-		if (current->value > prev)
-			count++;
-		prev = current->value;
-		current = current->next;
-	}
-	if (list.list->value > prev)
-		count++;
-	if (count > 1)
-		return (1);
-	return (0);
-}
