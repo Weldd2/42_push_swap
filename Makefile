@@ -22,17 +22,29 @@ INC_DIR := include
 OBJ_DIR := obj
 TEST_DIR := tests
 
+# Répertoire de la bibliothèque
+LIB_DIR := lib/str
+
+# Compilateur et flags
 CC := cc
 CFLAGS := -Wall -Werror -Wextra -I$(INC_DIR) -g
 
-# Sources
+# Sources principales
 SRC := $(wildcard $(SRC_DIR)/*.c)
-OBJ := $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC))
+OBJ := $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC)) $(LIB_OBJ)
 
+# Sources de la bibliothèque
+LIB_SRC := $(wildcard $(LIB_DIR)/*.c)
+LIB_OBJ := $(patsubst $(LIB_DIR)/%.c, $(OBJ_DIR)/lib/str/%.o, $(LIB_SRC))
+
+# Objets principaux (incluant les objets de la bibliothèque)
+OBJ := $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC)) $(LIB_OBJ)
+
+# Sources et objets de test
 TEST_SRC := $(wildcard $(TEST_DIR)/*.c)
 TEST_OBJ := $(patsubst $(TEST_DIR)/%.c, $(OBJ_DIR)/tests/%.o, $(TEST_SRC))
 
-# Exclure main.o des objets principaux lors de la création de test_bin
+# Objets pour le binaire de test (excluant main.o et incluant les objets de la bibliothèque)
 TEST_LINK_OBJ := $(filter-out $(OBJ_DIR)/main.o, $(OBJ)) $(TEST_OBJ)
 
 # Flags additionnels
@@ -54,7 +66,13 @@ $(NAME): $(OBJ) msg_comp
 	@$(CC) $(CFLAGS) -o $@ $(OBJ) $(LDFLAGS)
 	@printf "$(GREEN)✔ $(NAME) créé.\n$(RESET)"
 
+# Règle de compilation pour les objets principaux
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	@mkdir -p $(dir $@)
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+# Règle de compilation pour les objets de la bibliothèque
+$(OBJ_DIR)/lib/str/%.o: $(LIB_DIR)/%.c
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
@@ -80,6 +98,7 @@ $(TEST_BIN): $(TEST_LINK_OBJ)
 	@$(CC) $(CFLAGS) -o $@ $(TEST_LINK_OBJ) $(LDFLAGS)
 	@printf "$(GREEN)✔ Binaire de test $(TEST_BIN) créé.\n$(RESET)"
 
+# Règle de compilation pour les objets de test
 $(OBJ_DIR)/tests/%.o: $(TEST_DIR)/%.c
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) -c $< -o $@

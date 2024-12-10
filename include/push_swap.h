@@ -5,6 +5,7 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <stdbool.h>
+# include <str.h>
 # define INT_MIN -2147483648
 # define INT_MAX 2147483647
 
@@ -62,7 +63,6 @@ int		max(int a, int b);
 void	print_list(t_list list, char *name);
 int		get_elem_by_index(t_list list, int index);
 bool	is_sorted(t_list list, int (*direction)(int, int));
-
 int		descending(int a, int b);
 int		ascending(int a, int b);
 #endif
