@@ -6,7 +6,7 @@
 /*   By: antoinemura <antoinemura@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 23:08:11 by antoinemura       #+#    #+#             */
-/*   Updated: 2024/12/10 18:28:39 by antoinemura      ###   ########.fr       */
+/*   Updated: 2024/12/11 01:58:32 by antoinemura      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	find_max_index(t_node *n)
 	max = current->value;
 	max_index = 0;
 	i = 0;
-	while(current)
+	while (current)
 	{
 		if (current->value > max)
 		{
@@ -37,7 +37,6 @@ int	find_max_index(t_node *n)
 	}
 	return (max_index);
 }
-
 
 int	find_min_index(t_node *n)
 {
@@ -52,7 +51,7 @@ int	find_min_index(t_node *n)
 	min = current->value;
 	min_index = 0;
 	i = 0;
-	while(current)
+	while (current)
 	{
 		if (current->value < min)
 		{
@@ -74,7 +73,7 @@ int	find_max_value(t_node *n)
 		return (INT_MIN);
 	current = n;
 	max = current->value;
-	while(current)
+	while (current)
 	{
 		if (current->value > max)
 			max = current->value;
@@ -92,7 +91,7 @@ int	find_min_value(t_node *n)
 		return (INT_MAX);
 	current = n;
 	min = current->value;
-	while(current)
+	while (current)
 	{
 		if (current->value < min)
 			min = current->value;

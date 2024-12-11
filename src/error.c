@@ -1,37 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   atoi.c                                             :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: antoinemura <antoinemura@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/13 19:45:09 by marvin            #+#    #+#             */
-/*   Updated: 2024/12/11 01:53:15 by antoinemura      ###   ########.fr       */
+/*   Created: 2024/12/10 19:21:45 by antoinemura       #+#    #+#             */
+/*   Updated: 2024/12/11 01:59:35 by antoinemura      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_atoi(const char *nptr)
+void	ft_error(void)
 {
-	int	signe;
-	int	total;
-
-	signe = 1;
-	total = 0;
-	while ((*nptr >= 9 && *nptr <= 13) || *nptr == ' ')
-		nptr++;
-	if (*nptr == '-' || *nptr == '+')
-	{
-		if (*nptr == '-')
-			signe = -signe;
-		nptr++;
-	}
-	while (*nptr <= '9' && *nptr >= '0')
-	{
-		total = total * 10;
-		total += (*nptr - '0');
-		nptr++;
-	}
-	return (total * signe);
+	write(1, "Error\n", 7);
+	exit(EXIT_FAILURE);
 }

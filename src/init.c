@@ -6,24 +6,21 @@
 /*   By: antoinemura <antoinemura@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 20:04:03 by antoinemura       #+#    #+#             */
-/*   Updated: 2024/12/09 17:55:48 by antoinemura      ###   ########.fr       */
+/*   Updated: 2024/12/11 01:54:25 by antoinemura      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void init_t_nodes(t_list *list_a, t_list *list_b, int argc, char **argv)
+void	init_t_nodes(t_list *list_a, t_list *list_b, int argc, char **argv)
 {
 	list_a->list = ft_list_to_node(list_a, argc, argv);
 	if (list_a->list == NULL)
-	{
-		write(1, "Error\n", 7);
-		exit(EXIT_FAILURE);
-	}
+		ft_error();
 	list_b->list = NULL;
 }
 
-void init_t_lists(t_list *list_a, t_list *list_b, int argc, char **argv)
+void	init_t_lists(t_list *list_a, t_list *list_b, int argc, char **argv)
 {
 	list_a->list = NULL;
 	list_a->min = INT_MAX;

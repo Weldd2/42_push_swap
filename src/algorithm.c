@@ -6,72 +6,64 @@
 /*   By: antoinemura <antoinemura@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 14:52:56 by antoinemura       #+#    #+#             */
-/*   Updated: 2024/12/10 18:31:03 by antoinemura      ###   ########.fr       */
+/*   Updated: 2024/12/11 02:01:42 by antoinemura      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	find_closest_smaller_index(int value, t_list list)
+bool	comp_smaller(int current_value, int target_value, int closest)
 {
-	int		closest_smaller;
-	int		closest_smaller_index;
+	if (current_value < target_value && current_value > closest)
+		return (true);
+	return (false);
+}
+
+bool	comp_bigger(int current_value, int target_value, int closest)
+{
+	if (current_value > target_value && current_value < closest)
+		return (true);
+	return (false);
+}
+
+int	find_closest_index(int value, t_list list, bool (*comp)(int, int, int))
+{
 	int		i;
-	t_node	*current;
 	int		found;
+	int		closest;
+	int		closest_index;
+	t_node	*current;
 
 	current = list.list;
 	i = 0;
 	found = 0;
-	closest_smaller = INT_MIN;
-	closest_smaller_index = 0;
-	while(current)
+	if (comp == comp_smaller)
+		closest = INT_MIN;
+	else
+		closest = INT_MAX;
+	closest_index = 0;
+	while (current)
 	{
-		if (current->value < value && current->value > closest_smaller)
+		if (comp(current->value, value, closest))
 		{
-			closest_smaller = current->value;
-			closest_smaller_index = i;
+			closest = current->value;
+			closest_index = i;
 			found = 1;
 		}
 		current = current->next;
 		i++;
 	}
 	if (found == 0)
-		return (find_max_index(list.list));
-	return (closest_smaller_index);
-}
-
-int	find_closest_bigger_index(int value, t_list list)
-{
-	int		closest_bigger;
-	int		closest_bigger_index;
-	int		i;
-	t_node	*current;
-	int		found;
-
-	current = list.list;
-	i = 0;
-	found = 0;
-	closest_bigger = INT_MAX;
-	closest_bigger_index = 0;
-	while(current)
 	{
-		if (current->value > value && current->value < closest_bigger)
-		{
-			closest_bigger = current->value;
-			closest_bigger_index = i;
-			found = 1;
-		}
-		current = current->next;
-		i++;
+		if (comp == comp_smaller)
+			return (find_max_index(list.list));
+		if (comp == comp_bigger)
+			return (find_min_index(list.list));
 	}
-	if (found == 0)
-		return (find_min_index(list.list));
-	return (closest_bigger_index);
+	return (closest_index);
 }
 
-
-t_move	calculate_smallest_move_cost(t_list from, t_list target, int (*func)(int, t_list))
+t_move	get_best_move(t_list from, t_list target, bool (*comp)(int, int, int))
 {
 	t_node	*current;
 	int		cost;
@@ -82,10 +74,12 @@ t_move	calculate_smallest_move_cost(t_list from, t_list target, int (*func)(int,
 
 	current = from.list;
 	min_cost = INT_MAX;
+	if (target.length == 0 || from.length == 0)
+		ft_error();
 	i = 0;
 	while (current)
 	{
-		target_index = func(current->value, target);
+		target_index = find_closest_index(current->value, target, comp);
 		cost = target_index + i;
 		if (cost < min_cost)
 		{
@@ -101,53 +95,25 @@ t_move	calculate_smallest_move_cost(t_list from, t_list target, int (*func)(int,
 	return (move);
 }
 
-void	sort(t_list *from, t_list *to, int (*sm_cost)(int, t_list))
+void	sort(t_list *from, t_list *to, bool (*comp)(int, int, int))
 {
 	t_move	move;
 
-	move = calculate_smallest_move_cost(*from, *to, sm_cost);
-	while(from->list->value != move.elem_value)
+	move = get_best_move(*from, *to, comp);
+	while (from->list->value != move.elem_value)
 		rotate(from);
-	while(to->list->value != move.target_value)
+	while (to->list->value != move.target_value)
 		rotate(to);
 	push(from, to);
-}
-
-void	sort_3(t_list *list)
-{
-	int	first;
-	int	second;
-	int	third;
-	
-	first = list->list->value;
-	second = list->list->next->value;
-	third = list->list->next->next->value;
-
-	if (first > second && second < third && first < third)
-		swap(list);
-	else if (first > second && second > third)
-	{
-		swap(list);
-		rrotate(list);
-	}
-	else if (first > second && second < third && first > third)
-		rotate(list);
-	else if (first < second && second > third && first < third)
-	{
-		swap(list);
-		rotate(list);
-	}
-	else if (first < second && second > third && first > third)
-		rrotate(list);
 }
 
 void	turk_algorithm(t_list *list_a, t_list *list_b)
 {
 	push(list_a, list_b);
 	push(list_a, list_b);
-	while(list_a->length > 3)
-		sort(list_a, list_b, find_closest_smaller_index);
+	while (list_a->length > 3)
+		sort(list_a, list_b, comp_smaller);
 	sort_3(list_a);
-	while(list_b->length > 0)
-		sort(list_a, list_b, find_closest_bigger_index);
+	while (list_b->length > 0)
+		sort(list_b, list_a, comp_bigger);
 }

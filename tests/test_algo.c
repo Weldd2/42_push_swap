@@ -6,7 +6,7 @@
 /*   By: antoinemura <antoinemura@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 10:00:13 by antoinemura       #+#    #+#             */
-/*   Updated: 2024/12/10 18:33:41 by antoinemura      ###   ########.fr       */
+/*   Updated: 2024/12/11 01:51:47 by antoinemura      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 
 #include "test_push_swap.h"
 
-void	test_closest_smaller()
+void	test_closest()
 {
 	// ===== INIT ===== //
 	t_list	list_a;
@@ -34,22 +34,44 @@ void	test_closest_smaller()
 	// ================ //
 
 	// ===== CLOSEST SMALLER ===== //
-	assert(find_closest_smaller_index(0, list_a) == 5);
-	assert(find_closest_smaller_index(2, list_a) == 0);
-	assert(find_closest_smaller_index(-1, list_a) == 5);
-	assert(find_closest_smaller_index(5, list_a) == 4);
-	assert(find_closest_smaller_index(6, list_a) == 4);
-	assert(find_closest_smaller_index(9, list_a) == 2);
-	assert(find_closest_smaller_index(-10, list_a) == 2);
+	assert(find_closest_index(0, list_a, comp_smaller) == 5);
+	assert(find_closest_index(2, list_a, comp_smaller) == 0);
+	assert(find_closest_index(-1, list_a, comp_smaller) == 5);
+	assert(find_closest_index(5, list_a, comp_smaller) == 4);
+	assert(find_closest_index(6, list_a, comp_smaller) == 4);
+	assert(find_closest_index(9, list_a, comp_smaller) == 2);
+	assert(find_closest_index(-10, list_a, comp_smaller) == 2);
 	// ============================ //
+
+	// ===== CLOSEST BIGGER ===== //
+	assert(find_closest_index(0, list_a, comp_bigger) == 0);
+	assert(find_closest_index(2, list_a, comp_bigger) == 3);
+	assert(find_closest_index(-1, list_a, comp_bigger) == 0);
+	assert(find_closest_index(5, list_a, comp_bigger) == 1);
+	assert(find_closest_index(6, list_a, comp_bigger) == 1);
+	assert(find_closest_index(9, list_a, comp_bigger) == 5);
+	assert(find_closest_index(-10, list_a, comp_bigger) == 5);
+	// ============================ //
+
+	free_t_list(list_a);
+	free_t_list(list_b);
+
+	char	*args2[] = {"./push_swap", "1", "2", "3", "4", "5", NULL};
+	init_t_lists(&list_a, &list_b, 6, args2);
+	push(&list_a, &list_b);
+	push(&list_a, &list_b);
+	t_move move = get_best_move(list_a, list_b, comp_bigger);
+	assert(move.elem_value == 3);
+	assert(move.target_value == 1);
 }
 
 
-void	test_calculate_smallest_move_cost()
+void	test_get_best_move()
 {
 	// ===== INIT ===== //
 	t_list	list_a;
 	t_list	list_b;
+	t_move	move;
 	char	*args[] = {"./push_swap", "99", "0", "25", "-38", "10", "7", "42", NULL};
 	init_t_lists(&list_a, &list_b, 8, args);
 	// ================ //
@@ -58,9 +80,26 @@ void	test_calculate_smallest_move_cost()
 	push(&list_a, &list_b);
 
 	// ===== CLOSEST SMALLER ===== //
-	t_move	move = calculate_smallest_move_cost(list_a, list_b, find_closest_smaller_index);
+	move = get_best_move(list_a, list_b, comp_smaller);
 	assert(move.elem_index == 0);
 	assert(move.target_index == 0);
+	// ============================ //
+
+	free_t_list(list_a);
+	free_t_list(list_b);
+
+	// ===== INIT ===== //
+	char	*args2[] = {"./push_swap", "99", "0", "25", "-38", "10", "7", "42", NULL};
+	init_t_lists(&list_a, &list_b, 8, args2);
+	// ================ //
+
+	while(list_a.length > 3)
+		push(&list_a, &list_b);
+
+	// ===== CLOSEST BIGGER ===== //
+	move = get_best_move(list_a, list_b, comp_bigger);
+	assert(move.elem_index == 0);
+	assert(move.target_index == 1);
 	// ============================ //
 }
 
@@ -77,7 +116,7 @@ void	test_sort()
 	push(&list_a, &list_b);
 	
 	while(list_a.length > 3)
-		sort(&list_a, &list_b, find_closest_smaller_index);
+		sort(&list_a, &list_b, comp_smaller);
 
 	
 	assert(is_sorted(list_b, descending) == true);
@@ -85,10 +124,7 @@ void	test_sort()
 	sort_3(&list_a);
 	assert(is_sorted(list_a, ascending) == true);
 
-	printf("push b vers a en triant a (RETOUR)\n");
 	while(list_b.length > 0)
-		sort(&list_b, &list_a, find_closest_bigger_index);
+		sort(&list_b, &list_a, comp_bigger);
 	assert(is_sorted(list_a, ascending) == true);
-	print_list(list_a, "a");
-	print_list(list_b, "b");
 }

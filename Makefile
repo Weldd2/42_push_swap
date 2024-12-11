@@ -53,8 +53,8 @@ VALGRIND_FLAGS := --leak-check=full --show-leak-kinds=all
 LLDB_FLAGS := --
 
 # Arguments pour l'exécution
-TEST_ARGUMENTS := 1 2 3 4
-MAIN_ARGUMENTS := 5 6 7 8
+TEST_ARGUMENTS := 11 72 53 42 52 6 7 8 10 19
+MAIN_ARGUMENTS := 11 72 53 42 52 6 7 8 10 19
 
 # ============================================================================ #
 #        Règles de compilation                                                 #

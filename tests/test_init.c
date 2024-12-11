@@ -6,7 +6,7 @@
 /*   By: antoinemura <antoinemura@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 20:14:13 by antoinemura       #+#    #+#             */
-/*   Updated: 2024/12/10 18:20:59 by antoinemura      ###   ########.fr       */
+/*   Updated: 2024/12/10 19:22:54 by antoinemura      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,6 @@ void	test_init()
 	if (list_a.list->next->next->next->next != NULL)
 	{
 		fprintf(stderr, "Assertion échouée: la liste ne se termine pas correctement.\n");
-		exit(EXIT_FAILURE);
+		ft_error();
 	}
 }

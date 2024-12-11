@@ -6,7 +6,7 @@
 /*   By: antoinemura <antoinemura@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 20:06:46 by antoinemura       #+#    #+#             */
-/*   Updated: 2024/12/10 18:46:12 by antoinemura      ###   ########.fr       */
+/*   Updated: 2024/12/11 01:53:51 by antoinemura      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	get_elem_by_index(t_list list, int index)
 
 	current = list.list;
 	i = 0;
-	while(current->next && i != index )
+	while (current->next && i != index)
 	{
 		current = current->next;
 		i++;
@@ -76,4 +76,3 @@ bool	is_sorted(t_list list, int (*direction)(int, int))
 		breaks++;
 	return (breaks <= 1);
 }
-

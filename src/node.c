@@ -6,7 +6,7 @@
 /*   By: antoinemura <antoinemura@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 11:37:47 by antoinemura       #+#    #+#             */
-/*   Updated: 2024/12/09 17:38:33 by antoinemura      ###   ########.fr       */
+/*   Updated: 2024/12/11 02:01:51 by antoinemura      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ t_node	*ft_init_node(int value)
 		return (NULL);
 	n->value = value;
 	n->next = NULL;
-	// n->prev = NULL;
 	return (n);
 }
 
