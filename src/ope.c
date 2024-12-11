@@ -6,7 +6,7 @@
 /*   By: antoinemura <antoinemura@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 13:58:38 by antoinemura       #+#    #+#             */
-/*   Updated: 2024/12/11 01:57:31 by antoinemura      ###   ########.fr       */
+/*   Updated: 2024/12/11 13:22:45 by antoinemura      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	swap(t_list *list)
 	n->next = temp;
 	temp->next = next_value;
 	list->list = n;
+	write(1, "sa\n", 4);
 }
 
 void	rotate(t_list *list)
@@ -47,6 +48,7 @@ void	rotate(t_list *list)
 	list->list = first->next;
 	first->next = NULL;
 	last->next = first;
+	write(1, "ra\n", 4);
 }
 
 void	rrotate(t_list *list)
@@ -67,4 +69,5 @@ void	rrotate(t_list *list)
 	before_last->next = NULL;
 	last->next = first;
 	list->list = last;
+	write(1, "rra\n", 5);
 }

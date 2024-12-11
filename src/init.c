@@ -6,21 +6,40 @@
 /*   By: antoinemura <antoinemura@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 20:04:03 by antoinemura       #+#    #+#             */
-/*   Updated: 2024/12/11 01:54:25 by antoinemura      ###   ########.fr       */
+/*   Updated: 2024/12/11 16:07:48 by antoinemura      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	init_t_nodes(t_list *list_a, t_list *list_b, int argc, char **argv)
+t_node	*ft_init_node(int value)
 {
-	list_a->list = ft_list_to_node(list_a, argc, argv);
-	if (list_a->list == NULL)
-		ft_error();
-	list_b->list = NULL;
+	t_node	*n;
+
+	n = malloc(sizeof(t_node));
+	if (!n)
+		return (NULL);
+	n->value = value;
+	n->next = NULL;
+	return (n);
 }
 
-void	init_t_lists(t_list *list_a, t_list *list_b, int argc, char **argv)
+void	init_t_nodes(t_list *list_a, int *values, int nb_val)
+{
+	t_node *prev;
+
+	while (nb_val > 0)
+	{
+		prev = list_a->list;
+		list_a->list = ft_init_node(values[nb_val - 1]);
+		list_a->list->next = prev;
+		nb_val--;
+	}
+	if (list_a == NULL)
+		ft_error();
+}
+
+void	init_t_lists(t_list *list_a, t_list *list_b, int *values, int nb_val)
 {
 	list_a->list = NULL;
 	list_a->min = INT_MAX;
@@ -30,5 +49,15 @@ void	init_t_lists(t_list *list_a, t_list *list_b, int argc, char **argv)
 	list_b->min = INT_MAX;
 	list_b->max = INT_MIN;
 	list_b->length = 0;
-	init_t_nodes(list_a, list_b, argc, argv);
+	init_t_nodes(list_a, values, nb_val);
+	list_a->length = nb_val;
+	list_a->max = find_max_value(list_a->list);
+	list_a->min = find_min_value(list_a->list);
 }
+
+/*
+		value = ft_atoi(argv[i]);
+		if (value > INT_MAX || value < INT_MIN || 
+			has_duplicate(current, (int)value) == true)
+			ft_error();
+*/

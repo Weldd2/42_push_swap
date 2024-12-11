@@ -6,7 +6,7 @@
 /*   By: antoinemura <antoinemura@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 14:52:56 by antoinemura       #+#    #+#             */
-/*   Updated: 2024/12/11 02:01:42 by antoinemura      ###   ########.fr       */
+/*   Updated: 2024/12/11 13:52:16 by antoinemura      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,22 +95,12 @@ t_move	get_best_move(t_list from, t_list target, bool (*comp)(int, int, int))
 	return (move);
 }
 
-void	sort(t_list *from, t_list *to, bool (*comp)(int, int, int))
-{
-	t_move	move;
-
-	move = get_best_move(*from, *to, comp);
-	while (from->list->value != move.elem_value)
-		rotate(from);
-	while (to->list->value != move.target_value)
-		rotate(to);
-	push(from, to);
-}
-
 void	turk_algorithm(t_list *list_a, t_list *list_b)
 {
-	push(list_a, list_b);
-	push(list_a, list_b);
+	if (is_sorted(*list_a, ascending))
+		return ;
+	while (list_b->length != 2 && list_a->length != 3)
+		push(list_a, list_b);
 	while (list_a->length > 3)
 		sort(list_a, list_b, comp_smaller);
 	sort_3(list_a);

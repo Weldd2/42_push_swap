@@ -6,7 +6,7 @@
 /*   By: antoinemura <antoinemura@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 01:49:33 by antoinemura       #+#    #+#             */
-/*   Updated: 2024/12/11 01:52:46 by antoinemura      ###   ########.fr       */
+/*   Updated: 2024/12/11 15:58:25 by antoinemura      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ typedef struct s_move
 }	t_move;
 
 // ===== INIT ===== //
-void	init_t_lists(t_list *list_a, t_list *list_b, int argc, char **argv);
+void	init_t_lists(t_list *list_a, t_list *list_b, int *values, int nb_val);
 // ================ //
 
 void	free_t_list(t_list list);
@@ -54,8 +54,10 @@ int		find_closest_index(int value, t_list list, bool (*comp)(int, int, int));
 t_move	get_best_move(t_list from, t_list target, bool (*comp)(int, int, int));
 void	sort(t_list *list_a, t_list *list_b, bool (*comp)(int, int, int));
 void	sort_3(t_list *list);
+void	parse_args(int argc, char **argv, t_list *list_a, t_list *list_b);
 
-int		ft_atoi(const char *nptr);
+long long	ft_atoi(const char *nptr);
+bool		has_duplicate(int *values, int nb_values, int value);
 
 // ===== OPE ===== //
 void	swap(t_list *list);
@@ -76,7 +78,6 @@ bool	is_sorted(t_list list, int (*direction)(int, int));
 int		descending(int a, int b);
 int		ascending(int a, int b);
 void	ft_error(void);
-char	**parse_args(int argc, char **argv);
 bool	comp_smaller(int current_value, int target_value, int closest);
 bool	comp_bigger(int current_value, int target_value, int closest);
 
