@@ -6,7 +6,7 @@
 /*   By: antoinemura <antoinemura@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 19:45:09 by marvin            #+#    #+#             */
-/*   Updated: 2024/12/11 13:07:19 by antoinemura      ###   ########.fr       */
+/*   Updated: 2024/12/11 18:24:18 by antoinemura      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,9 @@ long long	ft_atoi(const char *nptr)
 		total += (*nptr - '0');
 		nptr++;
 	}
+	while ((*nptr >= 9 && *nptr <= 13) || *nptr == ' ')
+		nptr++;
+	if (*nptr != '\0')
+		return ((long long)INT_MIN - 1);
 	return (total * signe);
 }

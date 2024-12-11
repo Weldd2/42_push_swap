@@ -6,7 +6,7 @@
 /*   By: antoinemura <antoinemura@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 19:20:48 by antoinemura       #+#    #+#             */
-/*   Updated: 2024/12/11 17:20:25 by antoinemura      ###   ########.fr       */
+/*   Updated: 2024/12/11 18:23:57 by antoinemura      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	parse_args(int argc, char **argv, t_list *list_a, t_list *list_b)
 {
-	int		i;
-	int		value;
-	int		*values;
-	char	**args;
-	int		nb_args;
+	int			i;
+	long long	value;
+	int			*values;
+	char		**args;
+	int			nb_args;
 
 	i = 0;
 	if (argc == 1)
@@ -38,7 +38,7 @@ void	parse_args(int argc, char **argv, t_list *list_a, t_list *list_b)
 	while (i < nb_args)
 	{
 		value = ft_atoi(args[i]);
-		if (has_duplicate(values, i, value) == true
+		if (has_duplicate(values, i, (int)value) == true
 			|| value > INT_MAX || value < INT_MIN)
 			ft_error();
 		values[i] = (int)value;
