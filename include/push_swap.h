@@ -6,7 +6,7 @@
 /*   By: antoinemura <antoinemura@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 01:49:33 by antoinemura       #+#    #+#             */
-/*   Updated: 2024/12/11 15:58:25 by antoinemura      ###   ########.fr       */
+/*   Updated: 2024/12/11 17:43:54 by antoinemura      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_list
 {
 	t_node	*list;
 	int		length;
+	char	*name;
 	int		max;
 	int		min;
 }	t_list;

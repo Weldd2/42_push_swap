@@ -6,7 +6,7 @@
 /*   By: antoinemura <antoinemura@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 01:55:41 by antoinemura       #+#    #+#             */
-/*   Updated: 2024/12/11 13:23:09 by antoinemura      ###   ########.fr       */
+/*   Updated: 2024/12/11 17:47:48 by antoinemura      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,7 @@ void	push(t_list *l_from, t_list *l_to)
 	(*to)->next = temp;
 	push_t_list_update_to(l_to);
 	push_t_list_update_from(l_from, l_to);
-	write(1, "pa\n", 4);
+	write(1, "p", 1);
+	write(1, l_from->name, 1);
+	write(1, "\n", 1);
 }

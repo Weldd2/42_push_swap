@@ -6,7 +6,7 @@
 /*   By: antoinemura <antoinemura@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 20:04:03 by antoinemura       #+#    #+#             */
-/*   Updated: 2024/12/11 16:07:48 by antoinemura      ###   ########.fr       */
+/*   Updated: 2024/12/11 17:43:17 by antoinemura      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,12 @@ void	init_t_lists(t_list *list_a, t_list *list_b, int *values, int nb_val)
 	list_a->min = INT_MAX;
 	list_a->max = INT_MIN;
 	list_a->length = 0;
+	list_a->name = "a";
 	list_b->list = NULL;
 	list_b->min = INT_MAX;
 	list_b->max = INT_MIN;
 	list_b->length = 0;
+	list_b->name = "b";
 	init_t_nodes(list_a, values, nb_val);
 	list_a->length = nb_val;
 	list_a->max = find_max_value(list_a->list);
