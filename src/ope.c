@@ -6,7 +6,7 @@
 /*   By: antoinemura <antoinemura@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 13:58:38 by antoinemura       #+#    #+#             */
-/*   Updated: 2024/12/11 17:48:28 by antoinemura      ###   ########.fr       */
+/*   Updated: 2024/12/11 19:19:09 by antoinemura      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	rrotate(t_list *list)
 	before_last->next = NULL;
 	last->next = first;
 	list->list = last;
-	write(1, "rr", 1);
+	write(1, "rr", 2);
 	write(1, list->name, 1);
 	write(1, "\n", 1);
 }
