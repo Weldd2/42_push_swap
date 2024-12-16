@@ -6,7 +6,7 @@
 /*   By: antoinemura <antoinemura@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 23:08:11 by antoinemura       #+#    #+#             */
-/*   Updated: 2024/12/11 01:58:32 by antoinemura      ###   ########.fr       */
+/*   Updated: 2024/12/12 15:08:49 by antoinemura      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,13 @@ int	find_min_value(t_node *n)
 int	max(int a, int b)
 {
 	if (a > b)
+		return (a);
+	return (b);
+}
+
+int	min(int a, int b)
+{
+	if (a < b)
 		return (a);
 	return (b);
 }

@@ -22,9 +22,9 @@ int main(void)
 	test_rrotate();
 	printf("\033[0;32m✔ Test RROTATE OK.\033[0m\n");
 
-	printf("\033[0;32m✔ Testing CLOSEST ...\033[0m\n");
+	printf("\033[0;32m✔ Testing cLOSEST ...\033[0m\n");
 	test_closest();
-	printf("\033[0;32m✔ Test CLOSEST OK.\033[0m\n");
+	printf("\033[0;32m✔ Test cLOSEST OK.\033[0m\n");
 
 	printf("\033[0;32m✔ Testing IS SORTED ...\033[0m\n");
 	test_is_sorted();
@@ -34,9 +34,9 @@ int main(void)
 	test_is_reverse_sorted();
 	printf("\033[0;32m✔ Test IS REVERSE SORTED OK.\033[0m\n");
 
-	printf("\033[0;32m✔ Testing SMALLEST MOVE COST ...\033[0m\n");
+	printf("\033[0;32m✔ Testing SMALLEST MOVE cOST ...\033[0m\n");
 	test_get_best_move();
-	printf("\033[0;32m✔ Test SMALLEST MOVE COST OK.\033[0m\n");
+	printf("\033[0;32m✔ Test SMALLEST MOVE cOST OK.\033[0m\n");
 
 	printf("\033[0;32m✔ Testing SORT ...\033[0m\n");
 	test_sort();
