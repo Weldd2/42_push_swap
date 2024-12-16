@@ -6,27 +6,11 @@
 /*   By: antoinemura <antoinemura@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 20:06:46 by antoinemura       #+#    #+#             */
-/*   Updated: 2024/12/16 13:31:11 by antoinemura      ###   ########.fr       */
+/*   Updated: 2024/12/16 19:51:47 by antoinemura      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	print_list(t_list list, char *name)
-{
-	t_node	*current;
-
-	current = list.head;
-	printf("%s -> ", name);
-	while (current != NULL)
-	{
-		printf("%d", current->value);
-		if (current->next != NULL)
-			printf(" -> ");
-		current = current->next;
-	}
-	printf("\n");
-}
 
 int	get_elem_by_index(t_list list, int index)
 {

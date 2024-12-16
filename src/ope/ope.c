@@ -1,27 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   max_min.c                                          :+:      :+:    :+:   */
+/*   ope.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: antoinemura <antoinemura@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/07 23:08:11 by antoinemura       #+#    #+#             */
-/*   Updated: 2024/12/16 19:52:27 by antoinemura      ###   ########.fr       */
+/*   Created: 2024/12/06 13:58:38 by antoinemura       #+#    #+#             */
+/*   Updated: 2024/12/16 15:23:25 by antoinemura      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	max(int a, int b)
+/* Fonction swap inchangée */
+void	swap(t_list *list)
 {
-	if (a > b)
-		return (a);
-	return (b);
-}
+	t_node	*n;
+	t_node	*temp;
+	t_node	*next_value;
 
-int	min(int a, int b)
-{
-	if (a < b)
-		return (a);
-	return (b);
+	if (list == NULL)
+		return ;
+	n = list->head;
+	if (n == NULL || n->next == NULL)
+		return ;
+	temp = n;
+	next_value = n->next->next;
+	n = n->next;
+	n->next = temp;
+	temp->next = next_value;
+	list->head = n;
+	write(1, "s", 1);
+	write(1, list->name, 1);
+	write(1, "\n", 1);
 }

@@ -6,7 +6,7 @@
 /*   By: antoinemura <antoinemura@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 19:20:48 by antoinemura       #+#    #+#             */
-/*   Updated: 2024/12/16 13:22:01 by antoinemura      ###   ########.fr       */
+/*   Updated: 2024/12/16 20:02:22 by antoinemura      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,19 @@ int	*args_to_values(char **args, int nb_args)
 	return (values);
 }
 
+void	free_split(char **split)
+{
+	int	i;
+
+	i = 0;
+	while (split[i] != NULL)
+	{
+		free(split[i]);
+		i++;
+	}
+	free(split);
+}
+
 void	parse_args(int argc, char **argv, t_list *list_a, t_list *list_b)
 {
 	int			i;
@@ -53,7 +66,10 @@ void	parse_args(int argc, char **argv, t_list *list_a, t_list *list_b)
 	if (argc > 2)
 		nb_args = argc - 1;
 	values = args_to_values(args, nb_args);
+	if (argc == 2)
+		free_split(args);
 	init_t_lists(list_a, list_b, values, nb_args);
+	free(values);
 }
 
 bool	has_duplicate(int *values, int nb_values, int value)

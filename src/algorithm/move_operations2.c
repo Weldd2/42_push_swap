@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   max_min.c                                          :+:      :+:    :+:   */
+/*   move_operations2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: antoinemura <antoinemura@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/07 23:08:11 by antoinemura       #+#    #+#             */
-/*   Updated: 2024/12/16 19:52:27 by antoinemura      ###   ########.fr       */
+/*   Created: 2024/12/16 19:57:16 by antoinemura       #+#    #+#             */
+/*   Updated: 2024/12/16 19:57:24 by antoinemura      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	max(int a, int b)
+bool	update_best_move(
+	t_move *best, int *min_cost, int local_min, t_rotation_costs co)
 {
-	if (a > b)
-		return (a);
-	return (b);
-}
-
-int	min(int a, int b)
-{
-	if (a < b)
-		return (a);
-	return (b);
+	if (local_min < *min_cost)
+	{
+		*min_cost = local_min;
+		best->costs = co;
+		return (true);
+	}
+	return (false);
 }

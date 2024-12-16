@@ -6,13 +6,13 @@
 /*   By: antoinemura <antoinemura@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 01:55:41 by antoinemura       #+#    #+#             */
-/*   Updated: 2024/12/16 13:49:45 by antoinemura      ###   ########.fr       */
+/*   Updated: 2024/12/16 20:08:49 by antoinemura      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	push_t_list_update_to(t_list *l_to)
+static void	push_t_list_update_to(t_list *l_to)
 {
 	int	moved_value;
 
@@ -26,7 +26,7 @@ void	push_t_list_update_to(t_list *l_to)
 	l_to->length++;
 }
 
-void	push_t_list_update_from(t_list *l_from, t_list *l_to)
+static void	push_t_list_update_from(t_list *l_from, t_list *l_to)
 {
 	int	moved_value;
 
