@@ -6,16 +6,35 @@
 /*   By: antoinemura <antoinemura@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 19:20:48 by antoinemura       #+#    #+#             */
-/*   Updated: 2024/12/12 15:08:49 by antoinemura      ###   ########.fr       */
+/*   Updated: 2024/12/16 13:22:01 by antoinemura      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+int	*args_to_values(char **args, int nb_args)
+{
+	int			*values;
+	int			i;
+	long long	value;
+
+	values = malloc(sizeof(int) * (nb_args));
+	i = 0;
+	while (i < nb_args)
+	{
+		value = ft_atoi(args[i]);
+		if (has_duplicate(values, i, (int)value) == true
+			|| value > INT_MAX || value < INT_MIN)
+			ft_error();
+		values[i] = (int)value;
+		i++;
+	}
+	return (values);
+}
+
 void	parse_args(int argc, char **argv, t_list *list_a, t_list *list_b)
 {
 	int			i;
-	long long	value;
 	int			*values;
 	char		**args;
 	int			nb_args;
@@ -33,17 +52,7 @@ void	parse_args(int argc, char **argv, t_list *list_a, t_list *list_b)
 	}
 	if (argc > 2)
 		nb_args = argc - 1;
-	values = malloc(sizeof(int) * (nb_args));
-	i = 0;
-	while (i < nb_args)
-	{
-		value = ft_atoi(args[i]);
-		if (has_duplicate(values, i, (int)value) == true
-			|| value > INT_MAX || value < INT_MIN)
-			ft_error();
-		values[i] = (int)value;
-		i++;
-	}
+	values = args_to_values(args, nb_args);
 	init_t_lists(list_a, list_b, values, nb_args);
 }
 

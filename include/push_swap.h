@@ -6,7 +6,7 @@
 /*   By: antoinemura <antoinemura@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 01:49:33 by antoinemura       #+#    #+#             */
-/*   Updated: 2024/12/16 13:14:41 by antoinemura      ###   ########.fr       */
+/*   Updated: 2024/12/16 13:30:00 by antoinemura      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,6 @@ typedef struct s_node
 	struct s_node	*next;
 }	t_node;
 
-typedef struct s_list
-{
-	t_node	*list;
-	int		length;
-	char	*name;
-	int		max;
-	int		min;
-}	t_list;
-
 typedef struct s_rot_costs {
 	int	e_upcost;
 	int	e_downcost;
@@ -48,6 +39,24 @@ typedef enum e_rot_case {
 	FROM_UP_TO_DOWN,
 	FROM_DOWN_TO_UP
 }	t_rot_case;
+
+typedef struct s_move {
+	int					elem_index;
+	int					elem_value;
+	int					target_index;
+	int					target_value;
+	t_rot_costs	costs;
+	t_rot_case	c;
+}	t_move;
+
+typedef struct s_list
+{
+	t_node	*list;
+	int		length;
+	char	*name;
+	int		max;
+	int		min;
+}	t_list;
 
 typedef struct s_findclosest_ctx
 {
@@ -68,16 +77,6 @@ typedef struct s_best_move_ctx
 	t_rot_costs	co;
 	t_rot_case	c;
 }	t_best_move_ctx;
-
-typedef struct s_move {
-	int					elem_index;
-	int					elem_value;
-	int					target_index;
-	int					target_value;
-	t_rot_costs	costs;
-	t_rot_case	c;
-}	t_move;
-
 
 typedef enum e_comp_type {
 	COMP_SMALLER,
