@@ -6,7 +6,7 @@
 /*   By: antoinemura <antoinemura@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 01:55:41 by antoinemura       #+#    #+#             */
-/*   Updated: 2024/12/12 15:08:49 by antoinemura      ###   ########.fr       */
+/*   Updated: 2024/12/16 13:49:45 by antoinemura      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ void	push_t_list_update_to(t_list *l_to)
 {
 	int	moved_value;
 
-	if (l_to == NULL || l_to->list == NULL)
+	if (l_to == NULL || l_to->head == NULL)
 		return ;
-	moved_value = l_to->list->value;
+	moved_value = l_to->head->value;
 	if (moved_value > l_to->max)
 		l_to->max = moved_value;
 	if (moved_value < l_to->min)
@@ -32,11 +32,11 @@ void	push_t_list_update_from(t_list *l_from, t_list *l_to)
 
 	if (l_from == NULL || l_to == NULL)
 		return ;
-	moved_value = l_to->list->value;
+	moved_value = l_to->head->value;
 	if (moved_value > l_from->max)
-		l_from->max = find_max_value(l_from->list);
+		l_from->max = find_max_value(l_from->head);
 	if (moved_value == l_from->min)
-		l_from->min = find_min_value(l_from->list);
+		l_from->min = find_min_value(l_from->head);
 	if (l_from->length > 0)
 		l_from->length--;
 }
@@ -47,8 +47,8 @@ void	push(t_list *l_from, t_list *l_to)
 	t_node	**from;
 	t_node	**to;
 
-	from = &(l_from->list);
-	to = &(l_to->list);
+	from = &(l_from->head);
+	to = &(l_to->head);
 	if (from == NULL || to == NULL || *from == NULL)
 		return ;
 	temp = *to;

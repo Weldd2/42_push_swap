@@ -6,7 +6,7 @@
 /*   By: antoinemura <antoinemura@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 10:00:13 by antoinemura       #+#    #+#             */
-/*   Updated: 2024/12/12 15:15:45 by antoinemura      ###   ########.fr       */
+/*   Updated: 2024/12/16 13:50:30 by antoinemura      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	test_closest()
 	push(&list_a, &list_b);
 	push(&list_a, &list_b);
 	t_move move = get_best_move(list_a, list_b, COMP_BIGGER);
-	assert(move.e_upcost_value == 3);
+	assert(move.e_up_cost_value == 3);
 	assert(move.target_value == 1);
 }
 
@@ -81,7 +81,7 @@ void	test_get_best_move()
 
 	// ===== cLOSEST SMALLER ===== //
 	move = get_best_move(list_a, list_b, COMP_SMALLER);
-	assert(move.e_upcost_index == 0);
+	assert(move.e_up_cost_index == 0);
 	assert(move.target_index == 0);
 	// ============================ //
 
@@ -98,7 +98,7 @@ void	test_get_best_move()
 
 	// ===== cLOSEST BIGGER ===== //
 	move = get_best_move(list_a, list_b, COMP_BIGGER);
-	assert(move.e_upcost_index == 0);
+	assert(move.e_up_cost_index == 0);
 	assert(move.target_index == 1);
 	// ============================ //
 }

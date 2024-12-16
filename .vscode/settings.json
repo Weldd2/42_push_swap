@@ -3,6 +3,8 @@
 		"push_swap.h": "c",
 		"test_push_swap.h": "c",
 		"assert.h": "c",
-		"unistd.h": "c"
+		"unistd.h": "c",
+		"queue": "c",
+		"stack": "c"
 	}
 }

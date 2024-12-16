@@ -6,7 +6,7 @@
 /*   By: antoinemura <antoinemura@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 20:14:28 by antoinemura       #+#    #+#             */
-/*   Updated: 2024/12/12 15:08:49 by antoinemura      ###   ########.fr       */
+/*   Updated: 2024/12/16 13:31:50 by antoinemura      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	test_swap()
 	parse_args(5, args, &list_a, &list_b);
 	// ================ //
 	
-	list_a.list->value = 1;
-	list_a.list->next->value = 2;
+	list_a.head->value = 1;
+	list_a.head->next->value = 2;
 	swap(&list_a);
-	assertLinkedList(list_a.list, (int[]){2, 1, 3, 4}, 4);
+	assertLinkedList(list_a.head, (int[]){2, 1, 3, 4}, 4);
 }

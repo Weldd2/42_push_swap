@@ -6,7 +6,7 @@
 /*   By: antoinemura <antoinemura@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 20:06:46 by antoinemura       #+#    #+#             */
-/*   Updated: 2024/12/12 15:14:31 by antoinemura      ###   ########.fr       */
+/*   Updated: 2024/12/16 13:31:11 by antoinemura      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	print_list(t_list list, char *name)
 {
 	t_node	*current;
 
-	current = list.list;
+	current = list.head;
 	printf("%s -> ", name);
 	while (current != NULL)
 	{
@@ -33,7 +33,7 @@ int	get_elem_by_index(t_list list, int index)
 	t_node	*current;
 	int		i;
 
-	current = list.list;
+	current = list.head;
 	i = 0;
 	while (current->next && i != index)
 	{
@@ -59,10 +59,10 @@ bool	is_sorted(t_list list, int (*direction)(int, int))
 	int		prev;
 	int		breaks;
 
-	if (!list.list)
+	if (!list.head)
 		return (true);
 	breaks = 0;
-	current = list.list;
+	current = list.head;
 	prev = current->value;
 	current = current->next;
 	while (current)
@@ -72,7 +72,7 @@ bool	is_sorted(t_list list, int (*direction)(int, int))
 		prev = current->value;
 		current = current->next;
 	}
-	if (!direction(prev, list.list->value))
+	if (!direction(prev, list.head->value))
 		breaks++;
 	return (breaks <= 1);
 }

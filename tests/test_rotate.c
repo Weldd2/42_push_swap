@@ -6,7 +6,7 @@
 /*   By: antoinemura <antoinemura@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 20:14:28 by antoinemura       #+#    #+#             */
-/*   Updated: 2024/12/12 15:08:49 by antoinemura      ###   ########.fr       */
+/*   Updated: 2024/12/16 13:31:50 by antoinemura      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,5 @@ void	test_rotate()
 	// ================ //
 
 	rotate(&list_a);
-	assertLinkedList(list_a.list, (int[]){2, 3, 4, 1}, 4);
+	assertLinkedList(list_a.head, (int[]){2, 3, 4, 1}, 4);
 }

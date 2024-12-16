@@ -6,7 +6,7 @@
 /*   By: antoinemura <antoinemura@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 20:14:28 by antoinemura       #+#    #+#             */
-/*   Updated: 2024/12/12 15:08:49 by antoinemura      ###   ########.fr       */
+/*   Updated: 2024/12/16 13:31:50 by antoinemura      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@ void	test_push()
 	push(&list_a, &list_b);
 
 	// ===== LIST_A ===== //
-	assertLinkedList(list_a.list, (int[]){2, 3, 4}, 3);
+	assertLinkedList(list_a.head, (int[]){2, 3, 4}, 3);
 	assert(list_a.min == 2);
 	assert(list_a.max == 4);
 	assert(list_a.length == 3);
 	// ================== //
 
 	// ===== LIST_B ===== //
-	assertLinkedList(list_b.list, (int[]){1}, 1);
+	assertLinkedList(list_b.head, (int[]){1}, 1);
 	assert(list_b.min == 1);
 	assert(list_b.max == 1);
 	assert(list_b.length == 1);
