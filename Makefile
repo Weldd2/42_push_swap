@@ -23,7 +23,7 @@ OBJ_DIR := obj
 TEST_DIR := tests
 
 # Répertoire de la bibliothèque
-LIB_DIR := lib/str
+LIB_DIR := lib/str lib/memory
 
 # Compilateur et flags
 CC := cc
@@ -31,14 +31,11 @@ CFLAGS := -Wall -Werror -Wextra -I$(INC_DIR) -g
 
 # Sources principales
 SRC := $(shell find $(SRC_DIR) -type f -name "*.c")
+LIB_SRC := $(wildcard lib/str/*.c) $(wildcard lib/memory/*.c)
+LIB_OBJ := $(patsubst lib/%.c, $(OBJ_DIR)/lib/%.o, $(LIB_SRC))
+
 OBJ := $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC)) $(LIB_OBJ)
 
-# Sources de la bibliothèque
-LIB_SRC := $(wildcard $(LIB_DIR)/*.c)
-LIB_OBJ := $(patsubst $(LIB_DIR)/%.c, $(OBJ_DIR)/lib/str/%.o, $(LIB_SRC))
-
-# Objets principaux (incluant les objets de la bibliothèque)
-OBJ := $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC)) $(LIB_OBJ)
 
 # Sources et objets de test
 TEST_SRC := $(wildcard $(TEST_DIR)/*.c)
@@ -53,8 +50,8 @@ VALGRIND_FLAGS := --leak-check=full --show-leak-kinds=all
 LLDB_FLAGS := 
 
 # Arguments pour l'exécution
-TEST_ARGUMENTS := "2206 4 7129 923 3210"
-MAIN_ARGUMENTS := "2206 4 82139 213"
+TEST_ARGUMENTS := "2206 4 7129 923 7213 892713  1289732 187 18238 9 218117 21837  732173 3210"
+MAIN_ARGUMENTS := "2206 4 7129 923 7213 892713  1289732 187 18238 9 218117 21837  732173 3210"
 
 # ============================================================================ #
 #        Règles de compilation                                                 #
@@ -71,8 +68,8 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
-# Règle de compilation pour les objets de la bibliothèque
-$(OBJ_DIR)/lib/str/%.o: $(LIB_DIR)/%.c
+# Règle de compilation générique pour les objets de la bibliothèque
+$(OBJ_DIR)/lib/%.o: lib/%.c
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) -c $< -o $@
 

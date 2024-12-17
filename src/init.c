@@ -6,7 +6,7 @@
 /*   By: antoinemura <antoinemura@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 20:04:03 by antoinemura       #+#    #+#             */
-/*   Updated: 2024/12/16 14:02:07 by antoinemura      ###   ########.fr       */
+/*   Updated: 2024/12/17 00:27:20 by antoinemura      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_node	*ft_init_node(int value)
 {
 	t_node	*n;
 
-	n = malloc(sizeof(t_node));
+	n = ft_arena_alloc(sizeof(t_node));
 	if (!n)
 		return (NULL);
 	n->value = value;
