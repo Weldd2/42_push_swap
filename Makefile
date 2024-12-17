@@ -1,3 +1,7 @@
+# ============================================================================ #
+#        Config variables                                                      #
+# ============================================================================ #
+
 # Nom de l'exécutable final
 NAME = push_swap
 
@@ -25,6 +29,10 @@ OBJS = $(patsubst $(SRCDIR)/%.c,$(OBJDIR)/%.o,$(SRCS))
 # Détection automatique des fichiers sources des modules récursivement
 OSI_MODULE_SRCS = $(shell find $(LIB_DIR) -type f -name '*.c')
 MOD_OBJS = $(patsubst $(LIB_DIR)/%.c,$(OBJDIR)/modules/%.o,$(OSI_MODULE_SRCS))
+
+# Variables pour Valgrind
+VALGRIND_FLAGS = --leak-check=full --show-leak-kinds=all
+TEST_ARGUMENTS = ""
 
 # Règle par défaut
 all: install_deps $(NAME)
@@ -58,5 +66,10 @@ fclean: clean
 
 re: fclean all
 
+# Règle Valgrind
+valgrind: CFLAGS += -g
+valgrind: re
+	valgrind $(VALGRIND_FLAGS) ./$(NAME) $(TEST_ARGUMENTS)
+
 # Déclaration des cibles phony
-.PHONY: all clean fclean re install_deps
+.PHONY: all clean fclean re install_deps valgrind
