@@ -6,7 +6,7 @@
 /*   By: antoinemura <antoinemura@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 19:20:48 by antoinemura       #+#    #+#             */
-/*   Updated: 2024/12/17 18:07:50 by antoinemura      ###   ########.fr       */
+/*   Updated: 2024/12/17 19:14:00 by antoinemura      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ void	parse_args(int argc, char **argv, t_list *list_a, t_list *list_b)
 	if (argc == 2)
 	{
 		args = str_split(argv[1], ' ');
+		if (!args || args[0] == NULL)
+			ft_error();
 		while (args[i] != NULL)
 			i++;
 		nb_args = i;
