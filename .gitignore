@@ -3,6 +3,4 @@ push_swap
 test_bin
 checker_Mac
 push_swap_visualizer/
-settings.json
 .vscode/
-.vscode/settings.json
