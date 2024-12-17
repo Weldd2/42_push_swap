@@ -4,3 +4,5 @@ test_bin
 checker_Mac
 push_swap_visualizer/
 .vscode/
+*.dSYM
+lib

@@ -6,7 +6,7 @@
 /*   By: antoinemura <antoinemura@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 13:59:15 by antoinemura       #+#    #+#             */
-/*   Updated: 2024/12/16 22:42:37 by antoinemura      ###   ########.fr       */
+/*   Updated: 2024/12/17 18:08:20 by antoinemura      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,6 @@ int	main(int argc, char **argv)
 		else
 			rotate(&list_a);
 	}
-	ft_free_arena();
+	mem_free_arena();
 	return (0);
 }

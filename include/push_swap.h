@@ -6,7 +6,7 @@
 /*   By: antoinemura <antoinemura@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 01:49:33 by antoinemura       #+#    #+#             */
-/*   Updated: 2024/12/17 00:59:24 by antoinemura      ###   ########.fr       */
+/*   Updated: 2024/12/17 18:00:39 by antoinemura      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <unistd.h>
 # include <stdbool.h>
 # include "str.h"
+# include "mem.h"
 
 /* Définition des limites des entiers */
 # define INT_MIN -2147483648

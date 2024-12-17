@@ -6,7 +6,7 @@
 /*   By: antoinemura <antoinemura@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 19:20:48 by antoinemura       #+#    #+#             */
-/*   Updated: 2024/12/16 22:42:22 by antoinemura      ###   ########.fr       */
+/*   Updated: 2024/12/17 18:07:50 by antoinemura      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	*args_to_values(char **args, int nb_args)
 	int			i;
 	long long	value;
 
-	values = ft_arena_alloc(sizeof(int) * (nb_args));
+	values = mem_arena_alloc(sizeof(int) * (nb_args));
 	i = 0;
 	while (i < nb_args)
 	{
@@ -45,7 +45,7 @@ void	parse_args(int argc, char **argv, t_list *list_a, t_list *list_b)
 	args = argv + 1;
 	if (argc == 2)
 	{
-		args = ft_split(argv[1], ' ');
+		args = str_split(argv[1], ' ');
 		while (args[i] != NULL)
 			i++;
 		nb_args = i;

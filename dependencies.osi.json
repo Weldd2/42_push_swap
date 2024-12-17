@@ -1,0 +1,13 @@
+{
+	"name": "osi",
+	"dependencies": [
+		{
+			"name": "str",
+			"repo": "git@github.com:Weldd2/42_libamura_str.git"
+		},
+		{
+			"name": "mem",
+			"repo": "git@github.com:Weldd2/42_libamura_mem.git"
+		}
+	]
+}
